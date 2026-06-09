@@ -1,6 +1,6 @@
 # Design Report — Synchronous Buck Converter
 
-**Author:** Your Name  
+**Author:** Tyler Haney  
 **Date started:** June 2025  
 **Revision:** A  
 
