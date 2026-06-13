@@ -16,6 +16,8 @@
 | Efficiency target | >88% @ 1.5A | Industry benchmark for this power level |
 | Fsw | 400 kHz | Balance between component size and switching loss |
 | Output ripple | <50mV | <1% of Vout |
+| L Ripple Ratio | 30% | Standard balance for core size vs AC core |
+| Operating Temp | -40°C to +85°C | Industrial grade boundary |
 
 ---
 
@@ -30,10 +32,24 @@ Fill this in during Phase 1.)*
 ## 3. Design Calculations
 
 ### Duty Cycle
-D = Vout / Vin = 5 / 12 = 0.417
+Dideal = Vout / Vin = 5 / 12 = 0.4167
+Dideal = 41.67 %
+Loss-Corrected Duty Cycle (Assuming n = 0.90) : D = Vout / (Vin * n) 
+Min Input (7V): Dmax = 5.0 / (7.0 * 0.90) * 100 = 79.37 %
+Nomial Input (12V): Dnom = 5.0 / (12.0 * 0.90) * 100 = 46.30 %
+Maximum Input (18V): Dmin = 5.0 / (18.0 * 0.90) * 100 = 30.86 %
 
 ### Inductor Selection
-*(Fill in during Phase 1)*
+Target Ripple Current (r = 0.30 & Iout = 3 A) : ILf - ILi = r * Iout(max) = 0.30 * 3.0 A = 0.9 A
+L = ((Vin(nom) - Vout) * Dideal) / (f * (ILf- ILi))
+L = ((12.0 - 5.0) * 0.4167) / (400000 * 0.90) = 2.9169 / 360000 = 8.10 * 10^-6 H
+Not a common manufactured component value: Pick between 6.8 microH or 10 microH 
+
+Worst-Case Inductor Currents: deltaI(Lmax) = ((Vin(max) - Vout) * (Vout / Vin(max))) / (f * L) 
+deltaI(Lmax) = ((18.0 - 5.0) * 0.2778) / (400000 * (6.8 * 10^-6)) = 3.611 / 2.72 = 1.328 A
+Max Current Ripple = 1.328 A 
+Peak Current: Ipeak = Iout(max) + (deltaI(Lmax) / 2) = 3.0 + 1.328 / 2 = 3.664 A
+RMS Current: Irms = ((I^2out(max) + (deltaI^2(Lmax) / 12))^0.5 = (3.0^2 + (1.328^2 / 12))^0.5 = 3.024 A
 
 ### Output Capacitor Selection
 *(Fill in during Phase 1)*
