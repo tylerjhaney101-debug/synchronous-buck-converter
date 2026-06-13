@@ -32,27 +32,45 @@ Fill this in during Phase 1.)*
 ## 3. Design Calculations
 
 ### Duty Cycle
+
 Dideal = Vout / Vin = 5 / 12 = 0.4167
+
 Dideal = 41.67 %
+
 Loss-Corrected Duty Cycle (Assuming n = 0.90) : D = Vout / (Vin * n) 
+
 Min Input (7V): Dmax = 5.0 / (7.0 * 0.90) * 100 = 79.37 %
+
 Nomial Input (12V): Dnom = 5.0 / (12.0 * 0.90) * 100 = 46.30 %
+
 Maximum Input (18V): Dmin = 5.0 / (18.0 * 0.90) * 100 = 30.86 %
 
 ### Inductor Selection
 Target Ripple Current (r = 0.30 & Iout = 3 A) : ILf - ILi = r * Iout(max) = 0.30 * 3.0 A = 0.9 A
+
 L = ((Vin(nom) - Vout) * Dideal) / (f * (ILf- ILi))
+
 L = ((12.0 - 5.0) * 0.4167) / (400000 * 0.90) = 2.9169 / 360000 = 8.10 * 10^-6 H
+
 Not a common manufactured component value: Pick between 6.8 microH or 10 microH 
 
 Worst-Case Inductor Currents: deltaI(Lmax) = ((Vin(max) - Vout) * (Vout / Vin(max))) / (f * L) 
+
 deltaI(Lmax) = ((18.0 - 5.0) * 0.2778) / (400000 * (6.8 * 10^-6)) = 3.611 / 2.72 = 1.328 A
+
 Max Current Ripple = 1.328 A 
+
 Peak Current: Ipeak = Iout(max) + (deltaI(Lmax) / 2) = 3.0 + 1.328 / 2 = 3.664 A
+
 RMS Current: Irms = ((I^2out(max) + (deltaI^2(Lmax) / 12))^0.5 = (3.0^2 + (1.328^2 / 12))^0.5 = 3.024 A
 
 ### Output Capacitor Selection
-*(Fill in during Phase 1)*
+
+Cout(min) = deltaI(Lmax) / (8 * f * deltaVout)
+
+Cout(min) = 1.328 / (8 * 400000 * 0.050) = 1.328 / 160000 
+
+Cout(min) = 8.3 * 10^-6 F
 
 ### Feedback Resistor Divider
 *(Fill in during Phase 1)*
