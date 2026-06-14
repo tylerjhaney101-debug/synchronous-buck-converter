@@ -79,7 +79,11 @@ Cout(min) = 8.3 * 10^-6 F
 
 ## 4. Simulation Results
 
-*(Add LTspice screenshots with annotations during Phase 2)*
+<img width="1182" height="656" alt="image" src="https://github.com/user-attachments/assets/eeba40b7-eca0-4495-9cbf-8682892d1928" />
+
+Behavioral Simulation of 12V-5V buck conveter with LT8610A
+
+
 
 ---
 
