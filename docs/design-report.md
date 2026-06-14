@@ -83,6 +83,11 @@ Cout(min) = 8.3 * 10^-6 F
 
 Behavioral Simulation of 12V-5V buck conveter with LT8610A
 
+<img width="599" height="525" alt="image" src="https://github.com/user-attachments/assets/4aace38f-7b19-4ce2-bc4d-7a26b5d53427" />
+
+Schematic of 12V-5V buck conveter with LT8610A
+
+
 
 
 ---
