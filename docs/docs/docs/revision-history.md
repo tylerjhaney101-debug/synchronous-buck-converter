@@ -3,6 +3,16 @@
 ---
 
 ## Rev A — [Date ordered]
+Phase 2 Complete — LT8610 IC model simulation
+
+VOUT: 5.00V regulated ✓
+
+Soft start: clean ramp, no overshoot ✓
+
+Settling time: ~4.5ms
+
+Next: Measure ripple, probe VSW, run load transient
+
 Initial design. Based on LTspice-validated schematic using MP2307.
 4-layer PCB, first fabrication.
 
