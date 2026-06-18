@@ -90,6 +90,12 @@ cannot be corrected by capacitor alone. A closed feedback loop is
 required to regulate VOUT against component drops and load variation
 
 ---
+### Issue #8
+**Symptom:** Incorrect output voltage calculation during schematic review.
+**Hypothesis:** Mistook the timing resistor network parameters ($R_{\text{rt}}$) or used incorrect feedback scaling ratios ($R_{\text{top}}$) for a 5V target output.
+**Action taken:** Recalculated values using the internal reference ($V_{\text{REF}} = 0.970\text{V}$). Replaced the placeholder `105k` text string with an standard E96 standard value of **84.5kΩ** for $R_{\text{top}}$.
+**Result:** Safe calculated output brought to a stable 5.06V.
+**Lesson:** Always verify feedback equations independently against the IC datasheet's exact internal reference voltage before locking down part selections.
 
 ### Phase 2 Summary
 **Non-synchronous simulation results (D=0.449, 1N4148):**
