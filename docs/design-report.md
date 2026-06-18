@@ -93,6 +93,7 @@ Schematic of 12V-5V buck conveter with LT8610A
 ---
 
 ## 5. PCB Design Decisions
+<img width="1308" height="1032" alt="Screenshot 2026-06-18 090001" src="https://github.com/user-attachments/assets/964ea14f-0ace-4ec8-ba68-9b6c79641c5a" />
 
 *(Describe component placement rationale, hot loop, layer stackup
 during Phase 3)*
