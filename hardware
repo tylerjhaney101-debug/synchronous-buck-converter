@@ -3,27 +3,3 @@
 
 The schematic captures a highly efficient synchronous buck converter stepping down a nominal 12V automotive/battery input rail to a regulated 5.06V auxiliary output rail capable of supplying up to 3A.
 
-###  Core Component Selections & Parameters
-
-| Component | Designator | Value / Part Number | Engineering Justification |
-| :--- | :--- | :--- | :--- |
-| **Step-Down Regulator** | $U_1$ | LT8610EMSE#PBF | High-efficiency monolithic synchronous buck with internal power switches and low quiescent current. |
-| **Power Inductor** | $L_1$ | 10 µH | Chosen to balance ripple current ($\Delta I_L \approx 30\%$) and transient response parameters at 400 kHz. |
-| **Input Bulk Filter** | $C_5$ | 10 µF MLCC | Ceramic capacitor with low ESR placed close to $V_{IN}$ to mitigate high $di/dt$ input loop noise. |
-| **Output Storage Matrix**| $C_4$ | 100 µF MLCC | Provides energy reservoir, ensures loop stability, and maintains output voltage ripple under 50mV. |
-| **Timing Resistor** | $R_{rt}$ | 75 kΩ | Configures the internal oscillator frequency to ~400 kHz to minimize switching losses. |
-
-###  Output Voltage Feedback Calculations
-
-The output voltage is set via the resistor divider network connected to the high-impedance error amplifier input pin (`FB`). Operating with an internal chip reference voltage ($V_{REF}$) of $0.970\text{V}$, standard 1% E96 resistors were selected to establish the output rail:
-
-$$V_{OUT} = V_{REF} \times \left(1 + \frac{R_{top}}{R_2}\right)$$
-
-$$V_{OUT} = 0.970\text{V} \times \left(1 + \frac{84.5\text{ k}\Omega}{20\text{ k}\Omega}\right) = \mathbf{5.068\text{V}}$$
-
-*Note: A targeted output of 5.06V is intentionally chosen to provide positive headroom, compensating for IR voltage drops across the downstream PCB copper traces and terminal connector blocks under full 3A loading conditions.*
-
-###  Layout Strategy & Design Constraints
-1. **The Hot Loop:** Splicing the 10µF input capacitor ($C_5$) millimeters away from the $V_{IN}$ and $PGND$ pins to contain high-frequency $di/dt$ loops.
-2. **Switching Area:** Minimizing the surface area of the `SW` copper polygon running to the 10µH inductor ($L_1$) to suppress $dv/dt$ capacitive noise coupling.
-3. **Analog Isolation:** Keeping the high-impedance feedback trace (`FB`) shielded on Layer 4, referencing a solid Layer 2 ground plane away from high-current switching fields.
